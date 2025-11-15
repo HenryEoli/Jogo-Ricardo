@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Biblioteca de Jogos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Biblioteca de Jogos</h1>
+    <a href="/jogos/novo" class="btn btn-primary mb-3">Adicionar Jogo</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano de Lançamento</th>
+            <th>Categoria</th>
+            <th>Finalizado</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jogo : ${jogos}">
+            <td th:text="${jogo.titulo}"></td>
+            <td th:text="${jogo.autor}"></td>
+            <td th:text="${jogo.anoLancamento}"></td>
+            <td th:text="${jogo.categoria.nome}"></td>
+            <td th:text="${jogo.finalizado ? 'Sim' : 'Não'}"></td>
+            <td>
+                <a th:href="@{/jogos/editar/{id}(id=${jogo.id})}" class="btn btn-sm btn-warning">Editar</a>
+                <a th:href="@{/jogos/deletar/{id}(id=${jogo.id})}" class="btn btn-sm btn-danger">Deletar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
